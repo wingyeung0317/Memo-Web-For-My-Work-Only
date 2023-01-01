@@ -47,6 +47,7 @@ header{
 
 #gcC{
   font-size: 28px;
+  font-family: 'Kodchasan', sans-serif;
 }
 
 input{
@@ -57,6 +58,15 @@ input{
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+
+#return{
+  width: 100%;
+  font-size: 44px;
+  height: 68px;
+  color: #fff;
+  font-family: fantasy;
+  background-color: #D20;
 }
 
 #nLantau, #airport{
@@ -90,4 +100,13 @@ input{
 #numPad td{
   width: 33%;
   border: 3px #0f5 solid;
+}
+
+#gcC button{
+  font-size: 24px;
+  height: 68px;
+}
+
+#nLantauSelect button, #airportSelect button{
+  margin: 12px;
 }
