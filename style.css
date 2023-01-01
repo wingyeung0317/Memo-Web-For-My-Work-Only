@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&display=swap');
+
+body{
+  margin: 0;
+  background-color: #0fd;
+}
+
+header{
+  width: 100%;
+  font-size: 24px;
+  height: 150px;
+  position: sticky;
+  top:0;
+}
+
+/* gc = Green card; cnt = Counter;  msh = Map search*/
+/*header > span*/ .gc, .cnt, .msh{
+  position: absolute;
+  width: 33%;
+  display: inline-block;
+  font-size: 24px;
+  text-align: center;
+  font-weight: bold;
+  height: calc(90% - 60px);
+  padding: 30px 0;
+  top:0;
+}
+
+.gc{
+  left: 0;
+  background-color: #0d8;
+  font-family: 'Kodchasan', sans-serif;
+}
+
+.cnt{
+  left: 33%;
+  width: 34%;
+  background-color: #a1c;
+  font-family: 'Kanit', sans-serif;
+}
+
+.msh{
+  right: 0;
+  background-color: #da1;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+#gcC{
+  font-size: 28px;
+}
+
+input{
+  font-size: 28px;
+}
+
+#gcCfooter{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+#nLantau, #airport{
+  width: 50%;
+  font-size: 44px;
+  height: 68px;
+  color: #fff;
+  font-family: fantasy;
+}
+
+#nLantau{
+  left: 0;
+  background-color: #d06;
+}
+
+#airport{
+  right: 0;
+  background-color: #d60;
+}
+
+#numPad{
+  height: calc(99vw/3);
+  width: 100%;
+  font-size: 36px;
+  text-align: center;
+}
+
+#numPad>tr{
+  height: 20%;
+}
+#numPad td{
+  width: 33%;
+  border: 3px #0f5 solid;
+}
