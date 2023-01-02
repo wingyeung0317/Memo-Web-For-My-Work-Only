@@ -2,7 +2,7 @@
 
 body{
   margin: 0;
-  background-color: #0fd;
+  background-color: #ee0;
 }
 
 header{
@@ -109,4 +109,50 @@ input{
 
 #nLantauSelect button, #airportSelect button{
   margin: 12px;
+}
+
+#cntScreen{
+  width: 100px;
+}
+
+#counterArea>span{
+  font-size: 18px;
+  padding: 10px;
+  border: 2px dotted #d04;
+  margin: 20px;
+  background-color: #70e;
+  color: #ccc;
+}
+
+#counterArea{
+  text-align: center;
+}
+
+#mapS{
+  font-size: 22px;
+}
+
+#mapS input{
+  font-size: 18px;
+  width: calc(80% - 160px);
+}
+
+#searchBtn{
+  font-size: 18px;
+  height: 36px;
+  width: 100%;
+}
+
+#detailInfo>li>img{
+  width: 25px;
+}
+
+.chiLocName, .chiStreetName{
+  font-size: 22px;
+  color: #e80;
+}
+
+.engLocName, .engStreetName{
+  font-size: 16px;
+  color: #fa0;
 }
