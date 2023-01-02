@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="index.js" charset="utf-8"></script>
+  <script type="module" src="googleMapSearch.js"></script>
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc&libraries=places&callback=initMap">
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="googleMapSearch.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Kanit:wght@200;400&family=Kodchasan&display=swap" rel="stylesheet">
+  <title>Taxi Memo</title>
+  <style> @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Kanit:wght@200;400&family=Kodchasan&display=swap'); </style>
+</head>
+<body>
+  <header><span class="gc" onclick="gcC()">Green Card Record</span><span class="cnt" onclick="CnR()">Counter & Records</span><span class="msh" onclick="mapS()">Map Search</span></header>
+  <content>
+    <!-- Green Card Record -->
+    <div id="gcC"><br>
+
+      <div id="gcC_content">Last 3 num: <input id="last3" type="number" name="last3"  maxlength="3" autocomplete="off" disabled><br><br>
+        <table id="numPad">
+          <tr><td onclick="addLast3(1)">1</td><td onclick="addLast3(2)">2</td><td onclick="addLast3(3)">3</td></tr>
+          <tr><td onclick="addLast3(4)">4</td><td onclick="addLast3(5)">5</td><td onclick="addLast3(6)">6</td></tr>
+          <tr><td onclick="addLast3(7)">7</td><td onclick="addLast3(8)">8</td><td onclick="addLast3(9)">9</td></tr>
+          <tr><td onclick="$('#last3').val('')">CLEAR</td><td onclick="$('#last3').val($('#last3').val().substr(0,$('#last3').val().length-1))"><=</td><td onclick="addLast3(0)">0</td></tr>
+        </table><br><br>
+        Taxi LPN: <input id="taxiLPN" type="text" name="lpn" pattern="[A-HJ-NPR-Z0-9]{1,}" oninput="this.value = this.value.toUpperCase()"  onclick="$('#taxiLPN').val('')" autocomplete="off"><br><br>
+      </div>
+
+      <!-- Select value in north lantau -->
+      <div id="nLantauSelect" onload="$('#nLantauSelect').hide()">
+        <button onclick="submitGreen(1)">Caribbean Coast</button>
+      </div>
+
+      <!-- Select value in north lantau -->
+      <div id="airportSelect" onload="$('#airportSelect').hide()">
+        <button onclick="submitGreen(1)">Airport Island</button>
+        <button onclick="submitGreen(2)">Airport Freight Forwarding Ctr.</button>
+        <button onclick="submitGreen(3)">Asia Airfreight Terminal</button>
+        <button onclick="submitGreen(4)">AWE</button>
+        <button onclick="submitGreen(5)">Cathay Pacific City</button>
+        <button onclick="submitGreen(6)">DHL Central Asia Hub</button>
+        <button onclick="submitGreen(7)">Hong Kong Aircraft Engineering Co. Ltd</button>
+        <button onclick="submitGreen(8)">Hong Kong Business Aviation Ctr.</button>
+        <button onclick="submitGreen(9)">Hong Kong SkyCity Marriott</button>
+        <button onclick="submitGreen(10)">Regal Airport Hotel</button>
+        <button onclick="submitGreen(11)">Super Terminal One</button>
+      </div>
+
+      <div id="gcCfooter"><button id="nLantau" type="button" name="nLantau" onclick="to_nLantau()">North Lantau</button><button id="airport" type="button" name="airport" onclick="to_Airport()">Airport</button></div>
+    <br></div>
+    <script>$(document).ready(chgNormal())</script>
+
+    <!-- Counter & Records -->
+    <div id="CnR"><br>
+      <div id="counterArea">
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-1))">-1</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-2))">-2</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-3))">-3</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-4))">-4</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-5))">-5</span>
+        <br><br><input type="number" id="cntScreen" value="0"><br><br>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+1)">+1</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+2)">+2</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+3)">+3</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+4)">+4</span>
+        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+5)">+5</span>
+      </div>
+    </div>
+    <script>setInterval('uploadCnt()', 1000);</script>
+
+    <!-- Map Search -->
+      <div id="mapS">
+        <div class="pac-card" id="pac-card">
+          <div>
+            <div id="title">Autocomplete search</div>
+            <div id="type-selector" class="pac-controls">
+              <input
+                type="radio"
+                name="type"
+                id="changetype-all"
+                checked="checked"
+              />
+              <label for="changetype-all">All</label>
+            </div>
+            <div id="strict-bounds-selector" class="pac-controls">
+              <input type="checkbox" id="use-location-bias" value="" checked />
+              <label for="use-location-bias">Bias to map viewport</label>
+            </div>
+          </div>
+          <div id="pac-container">
+            <input id="pac-input" type="text" placeholder="Enter a location" />
+          </div>
+        </div>
+        <div id="map"></div>
+        <div id="infowindow-content">
+          <span id="place-name" class="title"></span><br />
+          <span id="place-address"></span>
+        </div>
+
+        <button id="searchBtn" onclick="getDetail()">Detail information</button>
+        <ul id="detailInfo">
+        </ul>
+      </div>
+
+
+    <script>
+      $('#gcC').hide(60);
+      $('#CnR').hide(60);
+      $('#mapS').hide(60);
+    </script>
+
+
+  </content>
+</body>
+</html>
