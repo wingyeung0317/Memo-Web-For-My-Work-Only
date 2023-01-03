@@ -124,7 +124,7 @@ function getDetail() {
     headers: { }
   };
 
-  fetch(config)
+  axios(config)
   .then(function (data) {
     $.each(data, function(i,item){
       $.each(item, function(i,place){
