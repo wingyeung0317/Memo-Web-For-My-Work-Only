@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "/map"
-  to = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"
+  from = "/findplacefromtext"
+  to = "https://maps.googleapis.com/maps/api/place/findplacefromtext"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
