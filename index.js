@@ -38,11 +38,9 @@ function submitGreen(des) {
   var time = currentdate.getHours() + ":" + currentdate.getMinutes();
   var last3 = $('#last3').val();
   var lpn = $('#taxiLPN').val();
-  function writeGreen(last3, date, time, lpn, des) {
-    const { error } = await supabase
-      .from('greencard')
-      .insert({ last3: last3, lpn: lpn, des: des })
-  }
+  const { error } = await supabase
+    .from('greencard')
+    .insert({ last3: last3, lpn: lpn, des: des });
   console.log('Date: ' + date + '\nLast 3 num: ' + $('#last3').val() + '\nTaxi LPN: ' + $('#taxiLPN').val() + '\nDestination: ' + des + '\nTime: ' + time);
   chgNormal();
   $('#last3').val('')
