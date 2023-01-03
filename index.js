@@ -117,7 +117,16 @@ function getDetail() {
   user_input = $('#pac-input').val();
   $('#detailInfo').html('');
   var resultNo = 0;
-  $.getJSON('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=name,icon,formatted_address&input='+user_input+'&inputtype=textquery&language=zh-HK&key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc', function(data){
+  var axios = require('axios');
+
+  var config = {
+    method: 'get',
+    url: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=name,icon,formatted_address&input='+user_input+'&inputtype=textquery&language=zh-HK&key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc',
+    headers: { }
+  };
+
+  axios(config)
+  .then(function (data) {
     $.each(data, function(i,item){
       $.each(item, function(i,place){
         console.log(item);
@@ -129,6 +138,9 @@ function getDetail() {
         resultNo += 1;
       });
     });
+  })
+  .catch(function (error) {
+    console.log(error);
   });
   $.getScript("load/index/insertEng.js");
 }
