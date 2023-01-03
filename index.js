@@ -1,3 +1,8 @@
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://mnekxwjrmvveawxexudr.supabase.co'
+const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uZWt4d2pybXZ2ZWF3eGV4dWRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI3MzY2ODIsImV4cCI6MTk4ODMxMjY4Mn0.iFrODM3JSQJzl7CkqSKZacQ6Y15hnMLuTQMT6c4HV5o')
+
 function addLast3(num) {
   $('#last3').val($('#last3').val()+num);
 }
@@ -34,14 +39,9 @@ function submitGreen(des) {
   var last3 = $('#last3').val();
   var lpn = $('#taxiLPN').val();
   function writeGreen(last3, date, time, lpn, des) {
-    const db = getDatabase();
-    set(ref(db, 'greenCard'), {
-      last3: last3,
-      date: date,
-      time: time,
-      lpn: lpn,
-      des: des
-    });
+    const { error } = await supabase
+      .from('greencard')
+      .insert({ last3: last3, lpn: lpn, des: des })
   }
   console.log('Date: ' + date + '\nLast 3 num: ' + $('#last3').val() + '\nTaxi LPN: ' + $('#taxiLPN').val() + '\nDestination: ' + des + '\nTime: ' + time);
   chgNormal();
