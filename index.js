@@ -117,7 +117,6 @@ function getDetail() {
   user_input = $('#pac-input').val();
   $('#detailInfo').html('');
   var resultNo = 0;
-  var axios = require('axios');
 
   var config = {
     method: 'get',
@@ -125,7 +124,7 @@ function getDetail() {
     headers: { }
   };
 
-  axios(config)
+  fetch(config)
   .then(function (data) {
     $.each(data, function(i,item){
       $.each(item, function(i,place){
