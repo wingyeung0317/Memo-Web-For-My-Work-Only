@@ -9,6 +9,3 @@ fetch('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=
       });
     });
   });
-.catch(function (error) {
-  console.log(error);
-});

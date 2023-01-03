@@ -133,9 +133,6 @@ function getDetail() {
         });
       });
     });
-  .catch(function (error) {
-    console.log(error);
-  });
   $.getScript("load/index/insertEng.js");
 }
 
