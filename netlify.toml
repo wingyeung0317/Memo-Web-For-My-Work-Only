@@ -1,12 +1,10 @@
-# The following redirect is intended for use with most SPAs that handle
-# routing internally.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/map"
+  to = "https://maps.googleapis.com/maps/api/place/findplacefromtext/"
   status = 200
-
+  force = true
+  headers = {X-From = "Netlify"}
 [[headers]]
-  # Define which paths this specific [[headers]] block will cover.
   for = "/*"
-    [headers.values]
+  [headers.values]
     Access-Control-Allow-Origin = "*"

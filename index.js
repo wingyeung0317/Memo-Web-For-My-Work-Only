@@ -118,7 +118,7 @@ function getDetail() {
   $('#detailInfo').html('');
   var resultNo = 0;
 
-  fetch('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=name,icon,formatted_address&input='+user_input+'&inputtype=textquery&language=zh-HK&key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc')
+  fetch('map/json?fields=name,icon,formatted_address&input='+user_input+'&inputtype=textquery&language=zh-HK&key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc')
     .then((response) => response.json())
     .then(function (data) {
       $.each(data, function(i,item){
