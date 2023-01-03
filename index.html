@@ -10,7 +10,6 @@
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc&libraries=places&callback=initMap" defer>
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="googleMapSearch.css">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Kanit:wght@200;400&family=Kodchasan&display=swap" rel="stylesheet">
@@ -36,7 +35,7 @@
 
       <!-- Select value in north lantau -->
       <div id="nLantauSelect" onload="$('#nLantauSelect').hide()">
-        <button onclick="submitGreen(1)">Caribbean Coast</button>
+        <button onclick="submitGreen(12)">Caribbean Coast</button>
       </div>
 
       <!-- Select value in north lantau -->
@@ -61,20 +60,20 @@
     <!-- Counter & Records -->
     <div id="CnR"><br>
       <div id="counterArea">
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-1))">-1</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-2))">-2</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-3))">-3</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-4))">-4</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+(-5))">-5</span>
-        <br><br><input type="number" id="cntScreen" value="0"><br><br>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+1)">+1</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+2)">+2</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+3)">+3</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+4)">+4</span>
-        <span onclick="$('#cntScreen').val(parseInt($('#cntScreen').val())+5)">+5</span>
+        <span onclick="cntChange(-1)">-1</span>
+        <span onclick="cntChange(-2)">-2</span>
+        <span onclick="cntChange(-3)">-3</span>
+        <span onclick="cntChange(-4)">-4</span>
+        <span onclick="cntChange(-5)">-5</span>
+        <br><br><input type="number" id="cntScreen" value="0" onchange="cntNow($'#cntScreen'.val())"><br><br>
+        <span onclick="cntChange(1)">+1</span>
+        <span onclick="cntChange(2)">+2</span>
+        <span onclick="cntChange(3)">+3</span>
+        <span onclick="cntChange(4)">+4</span>
+        <span onclick="cntChange(5)">+5</span>
       </div>
+      <div id="rc"><span><div id="gcrcd"></div></span><span id="nowCNT"></span><span id="lastCNTHold"><button onclick="clrStorage()">Reset time</button><span id="lastCNT"></span><span><script>$('#lastCNT').html(localStorage.getItem('lastCnt'))</script><script>$('#gcrcd').html(localStorage.getItem('green'))</script><script>$('#nowCNT').html(localStorage.getItem('cntNow'))</script></div>
     </div>
-    <script>setInterval('uploadCnt()', 1000);</script>
 
     <!-- Map Search -->
       <div id="mapS">

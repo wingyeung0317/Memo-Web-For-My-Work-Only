@@ -1,8 +1,3 @@
-import { createClient } from '@supabase/supabase-js'
-
-const supabaseUrl = 'https://mnekxwjrmvveawxexudr.supabase.co'
-const supabase = createClient(supabaseUrl, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1uZWt4d2pybXZ2ZWF3eGV4dWRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzI3MzY2ODIsImV4cCI6MTk4ODMxMjY4Mn0.iFrODM3JSQJzl7CkqSKZacQ6Y15hnMLuTQMT6c4HV5o')
-
 function addLast3(num) {
   $('#last3').val($('#last3').val()+num);
 }
@@ -38,13 +33,45 @@ function submitGreen(des) {
   var time = currentdate.getHours() + ":" + currentdate.getMinutes();
   var last3 = $('#last3').val();
   var lpn = $('#taxiLPN').val();
-  const { error } = await supabase
-    .from('greencard')
-    .insert({ last3: last3, lpn: lpn, des: des });
-  console.log('Date: ' + date + '\nLast 3 num: ' + $('#last3').val() + '\nTaxi LPN: ' + $('#taxiLPN').val() + '\nDestination: ' + des + '\nTime: ' + time);
+  var desloc = 'Unknown';
+  switch(des){
+    case 1: desloc='Airport Island';
+    break;
+    case 2: desloc='Airport Freight Forwarding Ctr.';
+    break;
+    case 3: desloc='Asia Airfreight Terminal';
+    break;
+    case 4: desloc='AWE';
+    break;
+    case 5: desloc='Cathay Pacific City';
+    break;
+    case 6: desloc='DHL Central Asia Hub';
+    break;
+    case 7: desloc='Hong Kong Aircraft Engineering Co. Ltd';
+    break;
+    case 8: desloc='Hong Kong Business Aviation';
+    break;
+    case 9: desloc='Hong Kong SkyCity Marriott';
+    break;
+    case 10: desloc='Regal Airport Hotel';
+    break;
+    case 11: desloc='Super Terminal One';
+    break;
+    case 12: desloc='Caribbean Coast';
+    break;
+  }
+  // supabase.from('greencard').insert({ last3: last3, lpn: lpn, des: des });
+  console.log('Date: ' + date + '\nLast 3 num: ' + $('#last3').val() + '\nTaxi LPN: ' + $('#taxiLPN').val() + '\nDestination: ' + desloc + '\nTime: ' + time);
+  $('#gcrcd').html($('#gcrcd').html()+'<div onclick="delRc(this)">'+last3+'  |  '+date+'  |  '+time+'  |  '+lpn+ '  |  '+desloc+'</div>');
+  localStorage.setItem('green', $('#gcrcd').html());
   chgNormal();
   $('#last3').val('')
   $('#taxiLPN').val('')
+}
+
+function delRc(b) {
+  b.remove();
+  localStorage.setItem('green', $('#gcrcd').html());
 }
 
 function gcC(){
@@ -65,13 +92,25 @@ function mapS(){
   location.reload();
 }
 
-function uploadCnt(){
+function cntChange(chg) {
+  $('#cntScreen').val(parseInt($('#cntScreen').val())+chg);
+  cntNow($('#cntScreen').val());
+}
+
+function cntNow(cnt) {
   var currentdate = new Date();
-  if (currentdate.getMinutes() == 0) {
-    var last_hr_cnt = $('#cntScreen').val();
-    console.log(last_hr_cnt);
-    $('#cntScreen').val('')
+  if (currentdate.getHours() != $('#nowCNT').html()){
+    uploadCnt();
   }
+  $('#nowCNT').html(currentdate.getHours());
+  localStorage.setItem('cntNow', currentdate.getHours());
+}
+
+function uploadCnt(){
+  var cntp = $('#cntScreen').val()
+  $('#lastCNT').html(cntp);
+  localStorage.setItem('lastCnt', cntp);
+  $('#cntScreen').val('0');
 }
 
 function getDetail() {
@@ -92,4 +131,9 @@ function getDetail() {
     });
   });
   $.getScript("load/index/insertEng.js");
+}
+
+function clrStorage() {
+  localStorage.removeItem('cntNow');
+  localStorage.getItem('lastCnt');
 }

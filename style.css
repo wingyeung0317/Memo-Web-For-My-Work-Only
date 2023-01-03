@@ -156,3 +156,35 @@ input{
   font-size: 16px;
   color: #fa0;
 }
+
+#rc{
+  position: fixed;
+  bottom: 0;
+}
+
+#lastCNTHold{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 48px;
+  color: white;
+}
+#nowCNT{
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  font-size: 18px;
+  color: #a1c;
+}
+
+#gcrcd{
+  height: calc(95% - 320px);
+  width: calc(90% - 120px);
+  position: fixed;
+  bottom: 20px;
+  left:20px;
+  overflow: scroll;
+  background-color: #d04;
+  color: white;
+  font-size: 22px;
+}
