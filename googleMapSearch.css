@@ -16,7 +16,7 @@
  */
 html,
 body {
-  height: 100%;
+  height: 400px;
   margin: 0;
   padding: 0;
 }
@@ -50,11 +50,13 @@ body {
   overflow: hidden;
   font-family: Roboto;
   padding: 0;
+  width: 100%;
 }
 
 #pac-container {
   padding-bottom: 12px;
   margin-right: 12px;
+  width: 100%;
 }
 
 .pac-controls {
@@ -65,7 +67,7 @@ body {
 .pac-controls label {
   font-family: Roboto;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 100%;
 }
 
 #pac-input {
@@ -76,7 +78,7 @@ body {
   margin-left: 12px;
   padding: 0 11px 0 13px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 100% !important;
 }
 
 #pac-input:focus {
@@ -90,4 +92,3 @@ body {
   font-weight: 500;
   padding: 6px 12px;
 }
-
