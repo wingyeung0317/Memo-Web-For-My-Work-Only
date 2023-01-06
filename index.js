@@ -158,23 +158,46 @@ function getDetail() {
   user_input = $('#pac-input').val();
   $('#detailInfo').html('');
   var resultNo = 0;
+  $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc&region=HK&language=zh-HK&libraries=places', function() {
+    var service = new google.maps.places.PlacesService(map);
+    var request = {
+      query: user_input,
+      fields: ['name', 'icon', 'formatted_address'],
+    };
 
-  fetch('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=name,icon,formatted_address&input='+user_input+'&inputtype=textquery&language=zh-HK&key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc')
-    .then((response) => response.json())
-    .then(function (data) {
-      $.each(data, function(i,item){
-        $.each(item, function(i,place){
-          console.log(item);
-          $('#detailInfo').append(`<li><img src="`+ place.icon +`">
-            <span class="chiLocName">`+ place.name +`</span>
+    service.findPlaceFromQuery(request, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          console.log(results[i]);
+          $('#detailInfo').append(`<li><img src="`+ results[i].icon +`">
+            <span class="chiLocName">`+ results[i].name +`</span>
             <span class="engLocName"></span><br>
-            <span class="chiStreetName">`+ place.formatted_address +`</span>
+            <span class="chiStreetName">`+ results[i].formatted_address +`</span>
             <span class="engStreetName"></span></li>`);
           resultNo += 1;
-        });
-      });
+        }
+      }
     });
-  $.getScript("load/index/insertEng.js");
+    $.getScript("load/index/insertEng.js");
+  });
+  
+
+  // fetch('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=name,icon,formatted_address&input='+user_input+'&inputtype=textquery&language=zh-HK&key=AIzaSyDUWWx5ghRSO8HOENqj1IRLGmv1HApkmfc')
+  //   .then((response) => response.json())
+  //   .then(function (data) {
+  //     $.each(data, function(i,item){
+  //       $.each(item, function(i,place){
+  //         console.log(item);
+  //         $('#detailInfo').append(`<li><img src="`+ place.icon +`">
+  //           <span class="chiLocName">`+ place.name +`</span>
+  //           <span class="engLocName"></span><br>
+  //           <span class="chiStreetName">`+ place.formatted_address +`</span>
+  //           <span class="engStreetName"></span></li>`);
+  //         resultNo += 1;
+  //       });
+  //     });
+  //   });
+  // $.getScript("load/index/insertEng.js");
 }
 
 function clrStorage() {
