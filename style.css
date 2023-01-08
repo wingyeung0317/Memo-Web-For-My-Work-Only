@@ -55,6 +55,10 @@ input{
   font-size: 28px;
 }
 
+#gcC_content{
+  margin-bottom: 180px;
+}
+
 #gcCfooter{
   position: fixed;
   width: 100%;
