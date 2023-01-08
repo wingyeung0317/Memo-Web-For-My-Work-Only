@@ -19,9 +19,9 @@ function chgReturn(){
   $('#gcCfooter').load('load/index/footerReturn.txt');
 }
 
-function chgNormal() {
+function chgNormal(lang) {
   $('#gcCfooter').html('');
-  $('#gcCfooter').load('load/index/footerNormal.txt');
+  if (lang=='zh'){$('#gcCfooter').load('load/index/footerNormalZH.txt');} else {$('#gcCfooter').load('load/index/footerNormal.txt');}
   $('#gcC_content').show(80);
   $('#nLantauSelect').hide(80);
   $('#airportSelect').hide(80);
@@ -108,79 +108,79 @@ function submitGreen(lang, des) {
       
     case 'zh':
       switch(des){
-          case 1: desloc='機場島';
+        case 1: desloc='機場島';
           break;
-          case 2: desloc='機場空運中心';
+        case 2: desloc='機場空運中心';
           break;
-          case 3: desloc='亞洲空運中心';
+        case 3: desloc='亞洲空運中心';
           break;
-          case 4: desloc='亞洲國際博覽館';
+        case 4: desloc='亞洲國際博覽館';
           break;
-          case 5: desloc='國泰城';
+        case 5: desloc='國泰城';
           break;
-          case 6: desloc='敦豪中亞樞紐中心';
+        case 6: desloc='敦豪中亞樞紐中心';
           break;
-          case 7: desloc='香港飛機工程有限工司';
+        case 7: desloc='香港飛機工程有限工司';
           break;
-          case 8: desloc='香港商用航空中心';
+        case 8: desloc='香港商用航空中心';
           break;
-          case 9: desloc='香港天際萬豪酒店';
+        case 9: desloc='香港天際萬豪酒店';
           break;
-          case 10: desloc='富豪機場酒店';
+        case 10: desloc='富豪機場酒店';
           break;
-          case 11: desloc='超級一號貨站';
+        case 11: desloc='超級一號貨站';
           break;
-          case 12: desloc='北大嶼山區';
+        case 12: desloc='北大嶼山區';
           break;
-          case 13: desloc='映灣園';
+        case 13: desloc='映灣園';
           break;
-          case 14: desloc='東薈城名店倉';
+        case 14: desloc='東薈城名店倉';
           break;
-          case 15: desloc='藍天海岸';
+        case 15: desloc='藍天海岸';
           break;
-          case 16: desloc='富東邨/裕東苑';
+        case 16: desloc='富東邨/裕東苑';
           break;
-          case 17: desloc='下嶺皮邨';
+        case 17: desloc='下嶺皮邨';
           break;
-          case 18: desloc='影岸紅';
+        case 18: desloc='影岸紅';
           break;
-          case 19: desloc='水天藍岸';
+        case 19: desloc='水天藍岸';
           break;
-          case 20: desloc='馬灣新邨';
+        case 20: desloc='馬灣新邨';
           break;
-          case 21: desloc='昂坪360纜車站（東涌）';
+        case 21: desloc='昂坪360纜車站（東涌）';
           break;
-          case 22: desloc='北大嶼山醫院';
+        case 22: desloc='北大嶼山醫院';
           break;
-          case 23: desloc='諾富特東薈城酒店';
+        case 23: desloc='諾富特東薈城酒店';
           break;
-          case 24: desloc='海提灣畔';
+        case 24: desloc='海提灣畔';
           break;
-          case 25: desloc='石門甲';
+        case 25: desloc='石門甲';
           break;
-          case 26: desloc='上嶺皮邨';
+        case 26: desloc='上嶺皮邨';
           break;
-          case 27: desloc='東提灣畔';
+        case 27: desloc='東提灣畔';
           break;
-          case 28: desloc='東涌港鐵站';
+        case 28: desloc='東涌港鐵站';
           break;
-          case 29: desloc='昇薈';
+        case 29: desloc='昇薈';
           break;
-          case 30: desloc='黃家圍';
+        case 30: desloc='黃家圍';
           break;
-          case 31: desloc='逸東邨';
+        case 31: desloc='逸東邨';
           break;
-          case 32: desloc='港珠澳大橋';
+        case 32: desloc='港珠澳大橋';
           break;
-          case 33: desloc='愉景灣';
+        case 33: desloc='愉景灣';
           break;
         };
       break;
     }
   console.log('Date: ' + date + '\nLast 3 num: ' + $('#last3').val() + '\nTaxi LPN: ' + $('#taxiLPN').val() + '\nDestination: ' + desloc + '\nTime: ' + time);
-  $('#gcrcd').html($('#gcrcd').html()+'<div onclick="delRc(this)">'+last3+'  |  '+date+'  |  '+time+'  |  '+lpn+ '  |  '+desloc+'</div><br>');
+  $('#gcrcd').html($('#gcrcd').html()+'<div onclick="delRc(this)">'+last3+'  |  '+date+'  |  '+time+'  |  '+lpn+ '  |  '+desloc+'<br><br></div>');
   localStorage.setItem('green', $('#gcrcd').html());
-  chgNormal();
+  chgNormal(lang);
   $('#last3').val('')
   $('#taxiLPN').val('')
 }
@@ -209,24 +209,18 @@ function mapS(){
 }
 
 function cntChange(chg) {
-  $('#cntScreen').val(parseInt($('#cntScreen').val())+chg);
-  cntNow($('#cntScreen').val());
-}
-
-function cntNow(cnt) {
+  var cnt = $('#cntScreen').val()
   var currentdate = new Date();
-  if (currentdate.getHours() != $('#nowCNT').html()){
-    uploadCnt();
+  if (currentdate.getHours() != $('#nowTime').html()){
+    $('#lastCNT').html(cnt);
+    localStorage.setItem('lastCnt', cnt);
+    localStorage.setItem('nowCNT', 0);
+    $('#cntScreen').val('0');
   }
-  $('#nowCNT').html(currentdate.getHours());
-  localStorage.setItem('cntNow', currentdate.getHours());
-}
-
-function uploadCnt(){
-  var cntp = $('#cntScreen').val()
-  $('#lastCNT').html(cntp);
-  localStorage.setItem('lastCnt', cntp);
-  $('#cntScreen').val('0');
+  $('#nowTime').html(currentdate.getHours());
+  localStorage.setItem('timeNow', currentdate.getHours());
+  $('#cntScreen').val(parseInt($('#cntScreen').val())+chg);
+  localStorage.setItem('nowCNT', $('#cntScreen').val());
 }
 
 function getDetail() {
@@ -276,6 +270,7 @@ function getDetail() {
 }
 
 function clrStorage() {
-  localStorage.removeItem('cntNow');
-  localStorage.getItem('lastCnt');
+  $('#nowTime').html('');
+  $('#lastCNT').html('0');
+  localStorage.setItem('lastCnt', 0);
 }

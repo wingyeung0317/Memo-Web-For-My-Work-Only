@@ -18,66 +18,66 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <header><span class="gc" onclick="gcC()">Green Card Record</span><span class="cnt" onclick="CnR()">Counter & Records</span><span class="msh" onclick="mapS()">Map Search</span></header>
+  <header><span class="gc" onclick="gcC()">綠卡</span><span class="cnt" onclick="CnR()">Counter & 紀錄</span><span class="msh" onclick="mapS()">地方搜尋</span></header>
   <content>
     <!-- Green Card Record -->
     <div id="gcC"><br>
 
-      <div id="gcC_content">Last 3 num: <input id="last3" type="number" name="last3"  maxlength="3" autocomplete="off" disabled><br><br>
+      <div id="gcC_content">尾三位數: <input id="last3" type="number" name="last3"  maxlength="3" autocomplete="off" disabled><br><br>
         <table id="numPad">
           <tr><td onclick="addLast3(1)">1</td><td onclick="addLast3(2)">2</td><td onclick="addLast3(3)">3</td></tr>
           <tr><td onclick="addLast3(4)">4</td><td onclick="addLast3(5)">5</td><td onclick="addLast3(6)">6</td></tr>
           <tr><td onclick="addLast3(7)">7</td><td onclick="addLast3(8)">8</td><td onclick="addLast3(9)">9</td></tr>
           <tr><td onclick="$('#last3').val('')">CLEAR</td><td onclick="$('#last3').val($('#last3').val().substr(0,$('#last3').val().length-1))"><=</td><td onclick="addLast3(0)">0</td></tr>
         </table><br><br>
-        Taxi LPN: <input id="taxiLPN" type="text" name="lpn" pattern="[A-HJ-NPR-Z0-9]{1,}" oninput="this.value = this.value.toUpperCase()"  onclick="$('#taxiLPN').val('')" autocomplete="off"><br><br>
+        車牌: <input id="taxiLPN" type="text" name="lpn" pattern="[A-HJ-NPR-Z0-9]{1,}" oninput="this.value = this.value.toUpperCase()"  onclick="$('#taxiLPN').val('')" autocomplete="off"><br><br>
       </div>
 
       <!-- Select value in north lantau -->
       <div id="nLantauSelect" onload="$('#nLantauSelect').hide()">
-        <button onclick="submitGreen('en', 12)">North Lantau Island Area</button>
-        <button onclick="submitGreen('en', 13)">Caribbean Coast</button>
-        <button onclick="submitGreen('en', 14)">Citygate Outlets</button>
-        <button onclick="submitGreen('en', 15)">Coastal Skyline</button>
-        <button onclick="submitGreen('en', 16)">Fu Tung Estate / Yu Tung Estate</button>
-        <button onclick="submitGreen('en', 17)">Ha Ling Pei Village</button>
-        <button onclick="submitGreen('en', 18)">La Rossa</button>
-        <button onclick="submitGreen('en', 19)">Le Bleu Deux</button>
-        <button onclick="submitGreen('en', 20)">Ma Wan Sun Tsuen</button>
-        <button onclick="submitGreen('en', 21)">Ngong Ping 360 Cable Car Stn. (Tung Chung)</button>
-        <button onclick="submitGreen('en', 22)">North Lantau Hospital</button>
-        <button onclick="submitGreen('en', 23)">Novotel Citygate Hong Kong</button>
-        <button onclick="submitGreen('en', 24)">Seaview Crescent</button>
-        <button onclick="submitGreen('en', 25)">Shek Mun Kap</button>
-        <button onclick="submitGreen('en', 26)">Sheung Ling Pei Village</button>
-        <button onclick="submitGreen('en', 27)">Tung Chung Crescent</button>
-        <button onclick="submitGreen('en', 28)">Tung Chung MTR Station</button>
-        <button onclick="submitGreen('en', 29)">The Visionary</button>
-        <button onclick="submitGreen('en', 30)">Wong Ka Wai</button>
-        <button onclick="submitGreen('en', 31)">Yat Tung Estate</button>
-        <button onclick="submitGreen('en', 32)">HZMB</button>
+        <button onclick="submitGreen('zh', 12)">北大嶼山區</button>
+        <button onclick="submitGreen('zh', 13)">映灣園</button>
+        <button onclick="submitGreen('zh', 14)">東薈城名店倉</button>
+        <button onclick="submitGreen('zh', 15)">藍天海岸</button>
+        <button onclick="submitGreen('zh', 16)">富東邨/裕東苑</button>
+        <button onclick="submitGreen('zh', 17)">下嶺皮邨</button>
+        <button onclick="submitGreen('zh', 18)">影岸紅</button>
+        <button onclick="submitGreen('zh', 19)">水天藍岸</button>
+        <button onclick="submitGreen('zh', 20)">馬灣新邨</button>
+        <button onclick="submitGreen('zh', 21)">昂坪360纜車站（東涌）</button>
+        <button onclick="submitGreen('zh', 22)">北大嶼山醫院</button>
+        <button onclick="submitGreen('zh', 23)">諾富特東薈城酒店</button>
+        <button onclick="submitGreen('zh', 24)">海提灣畔</button>
+        <button onclick="submitGreen('zh', 25)">石門甲</button>
+        <button onclick="submitGreen('zh', 26)">上嶺皮邨</button>
+        <button onclick="submitGreen('zh', 27)">東提灣畔</button>
+        <button onclick="submitGreen('zh', 28)">東涌港鐵站</button>
+        <button onclick="submitGreen('zh', 29)">昇薈</button>
+        <button onclick="submitGreen('zh', 30)">黃家圍</button>
+        <button onclick="submitGreen('zh', 31)">逸東邨</button>
+        <button onclick="submitGreen('zh', 32)">港珠澳大橋</button>
       </div>
 
       <!-- Select value in north lantau -->
       <div id="airportSelect" onload="$('#airportSelect').hide()">
-        <button onclick="submitGreen('en', 1)">Airport Island</button>
-        <button onclick="submitGreen('en', 2)">Airport Freight Forwarding Ctr.</button>
-        <button onclick="submitGreen('en', 3)">Asia Airfreight Terminal</button>
-        <button onclick="submitGreen('en', 4)">AWE</button>
-        <button onclick="submitGreen('en', 5)">Cathay Pacific City</button>
-        <button onclick="submitGreen('en', 6)">DHL Central Asia Hub</button>
-        <button onclick="submitGreen('en', 7)">Hong Kong Aircraft Engineering Co. Ltd</button>
-        <button onclick="submitGreen('en', 8)">Hong Kong Business Aviation Ctr.</button>
-        <button onclick="submitGreen('en', 9)">Hong Kong SkyCity Marriott</button>
-        <button onclick="submitGreen('en', 10)">Regal Airport Hotel</button>
-        <button onclick="submitGreen('en', 11)">Super Terminal One</button>
+        <button onclick="submitGreen('zh', 1)">機場島</button>
+        <button onclick="submitGreen('zh', 2)">機場空運中心 Ctr.</button>
+        <button onclick="submitGreen('zh', 3)">亞洲空運中心</button>
+        <button onclick="submitGreen('zh', 4)">亞洲國際博覽館</button>
+        <button onclick="submitGreen('zh', 5)">國泰城</button>
+        <button onclick="submitGreen('zh', 6)">敦豪中亞樞紐中心</button>
+        <button onclick="submitGreen('zh', 7)">香港飛機工程有限工司</button>
+        <button onclick="submitGreen('zh', 8)">香港商用航空中心</button>
+        <button onclick="submitGreen('zh', 9)">香港天際萬豪酒店</button>
+        <button onclick="submitGreen('zh', 10)">富豪機場酒店</button>
+        <button onclick="submitGreen('zh', 11)">超級一號貨站</button>
       </div>
 
       <div id="gcCfooter"><div>
-        <button id="DB" type="button" onclick="submitGreen('en', 33)">Discovery Bay</button><button id="chgLang" type="button" onclick="location.href='zh.html'">中/Eng</button>
-      </div><div><button id="nLantau" type="button" name="nLantau" onclick="to_nLantau()">North Lantau</button><button id="airport" type="button" name="airport" onclick="to_Airport()">Airport</button></div></div>
+        <button id="DB" type="button" onclick="submitGreen('zh', 33)">愉景灣</button><button id="chgLang" type="button" onclick="location.href='index.html'">中/Eng</button>
+      </div><div><button id="nLantau" type="button" name="nLantau" onclick="to_nLantau()">北大嶼山</button><button id="airport" type="button" name="airport" onclick="to_Airport()">機場島</button></div></div>
     <br></div>
-    <script>$(document).ready(chgNormal('en'))</script>
+    <script>$(document).ready(chgNormal('zh'))</script>
 
     <!-- Counter & Records -->
     <div id="CnR"><br>
@@ -126,7 +126,7 @@
           <span id="place-address"></span>
         </div><br>
 
-        <button id="searchBtn" onclick="getDetail()">Detail information</button>
+        <button id="searchBtn" onclick="getDetail()">詳細資料</button>
         <ul id="detailInfo">
         </ul>
       </div>
